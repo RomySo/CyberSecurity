@@ -1,0 +1,74 @@
+<%- include('../partials/header') %>
+
+<div class="container mt-5">
+  <h1 class="mb-4">Customer Search</h1>
+
+  <!-- -Search Bar- -->
+  <form method="GET" action="/customer-portal" class="form-inline mb-4">
+    <input type="text" name="search" class="form-control me-2" placeholder="Search by name" value="<%= search %>">
+    <button type="submit" class="btn btn-primary">Search</button>
+  </form>
+
+  <!-- Customer Table -->
+  <table class="table table-bordered table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th>Full Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if (customers.length > 0) { %>
+        <% customers.forEach(function(cust) { %>
+          <tr>
+            <td><%= cust.name %></td>
+            <td><%= cust.email %></td>
+            <td><%= cust.phone %></td>
+          </tr>
+        <% }); %>
+      <% } else { %>
+        <tr>
+          <td colspan="3">No customers found.</td>
+        </tr>
+      <% } %>
+    </tbody>
+  </table>
+
+  <!-- Add Customer Button -->
+  <button class="btn btn-success my-3" type="button" data-bs-toggle="collapse" data-bs-target="#addCustomerForm">
+    + Add New Customer
+  </button>
+
+  <!-- Add Customer Form -->
+  <div id="addCustomerForm" class="collapse">
+    <form action="/customer-portal/add" method="POST" class="border p-4 rounded bg-light mt-3">      
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="name">First Name</label>
+          <input type="text" name="name" id="name" class="form-control" required pattern="[A-Za-z\s]+" title="Letters only">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="lastName">Last Name</label>
+          <input type="text" name="lastName" id="lastName" class="form-control" required pattern="[A-Za-z\s]+" title="Letters only">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone</label>
+        <input type="tel" name="phone" id="phone" class="form-control" required pattern="[0-9\-]+" title="Digits only">
+      </div>
+      <button type="submit" class="btn btn-dark">Save Customer</button>
+    </form>
+  </div>
+
+  <a href="/secrets" class="btn btn-link mt-3">⬅ Back</a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<%- include('../partials/footer') %>
