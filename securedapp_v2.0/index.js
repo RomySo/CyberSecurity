@@ -401,7 +401,7 @@ app.get("/customers", ensureAuthenticated, async (req, res) => {
   }
 });
 
-app.post("/customer/add-new", ensureAuthenticated, async (req, res) => {
+app.post("/customers/add-new", ensureAuthenticated, async (req, res) => {
   const { name, lastName, email, phone } = req.body;
   try {
     await db.query(
