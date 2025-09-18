@@ -1,0 +1,19 @@
+<%- include('partials/header') %>
+  <h3 class="dispaly-3">Signed in as <%= currentUser %><h3>
+  <div class="jumbotron text-center">
+    <div class="container">
+      <i class="fas fa-key fa-6x"></i>
+      <h1 class="display-3">Here is you secret data presented</h1>
+      <p class="secret-text">
+        <%= secret %>
+      </p>
+      <hr>
+
+      <a class="btn btn-light btn-lg" href="/sign-out" role="button">Sign Out</a>
+      <a class="btn btn-dark btn-lg" href="/change-pswd" role="button">Change Password</a>
+      <a class="btn btn-dark btn-lg" href="/data-update" role="button">Update secret data</a>
+      <a class="btn btn-info btn-lg" href="/customers" role="button">Customers List</a>
+    </div>
+  </div>
+
+  <%- include('partials/footer') %>
