@@ -213,6 +213,8 @@ app.post("/sign-in", async (req, res) => {
 app.post("/sign-up", async (req, res) => {
   const email = req.body.username;
   const password = req.body.password;
+  const fname = req.body.firstname;
+  const lname = req.body.lastname;
   
   try {
     const checkResult = await db.query(`SELECT * FROM users WHERE email = '${email}'`);
@@ -224,7 +226,7 @@ app.post("/sign-up", async (req, res) => {
         if (err) {
           console.error("Error hashing password:", err);
         } else {
-          const result = await db.query(`INSERT INTO users (email, password) VALUES ('${email}', '${hash}') RETURNING *`);
+          const result = await db.query(`INSERT INTO users (first_name, last_name, email, password) VALUES ('${fname}', '${lname}', '${email}', '${hash}') RETURNING *`);
           const user = result.rows[0];
           req.login(user, (err) => {
             console.log("success");
