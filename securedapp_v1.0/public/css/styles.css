@@ -1,0 +1,70 @@
+/* טוען פונט Heebo */
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@400;600;800&display=swap');
+
+/* ==== צבעים חדשים (אפשר לשחק איתם) ==== */
+:root{
+  --green-500: #1E7F5B;
+  --green-600: #176D4E;
+  --green-100: #E8FBF1;
+}
+
+html, body{
+  font-family: "Heebo", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+body{
+  background: linear-gradient(135deg, #F3FFF9 0%, var(--green-100) 60%, #DAF4E6 100%);
+}
+
+.jumbotron{
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding-left: 0;
+}
+
+.hero-title{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  margin-bottom:12px;
+}
+.hero-title i.fas.fa-globe{
+  font-size: 2.25rem;
+  color: var(--green-600);
+}
+.hero-title .display-3{
+  margin:0;
+  line-height:1.1;
+  font-size: clamp(1.75rem, 4vw + 0.5rem, 3.2rem);
+  color: var(--green-600);
+  font-weight: 800;           /* בולט יותר עם Heebo */
+  letter-spacing: .2px;       /* ריווח קל */
+}
+
+button{
+  background: linear-gradient(135deg, var(--green-500), var(--green-600));
+  color:#fff;
+  border:none;
+  padding:12px 20px;
+  border-radius: 999px;
+  font-weight:600;
+  box-shadow: 0 6px 14px rgba(23,109,78,.22);
+  transition: transform .08s ease, box-shadow .18s ease, opacity .2s ease;
+}
+button:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 10px 18px rgba(23,109,78,.28);
+}
+
+.form-control{
+  text-align:left;
+}
+
+.centered{
+  text-align:left;
+  max-width:900px;
+  margin-left:48px;
+  margin-right:auto;
+  padding-top:64px;
+}

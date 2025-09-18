@@ -19,7 +19,6 @@ app.set("view engine", "ejs");
 const saltRounds = 10;
 const tryCount = 3;
 
-// --- Middleware ---
 app.use(
   session({
     secret: process.env.SESSION_SECRET || "dev-secret",
@@ -31,11 +30,9 @@ app.use(
 
 app.use(passport.initialize());
 app.use(passport.session());
-
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
-// --- DB ---
 const db = new pg.Client({
   user: process.env.DB_USER,
   host: process.env.DB_HOST,
@@ -47,7 +44,6 @@ db.connect();
 const initquery = await readFile("init_db.sql", "utf8");
 const initdb = await db.query(initquery);
 
-// --- Views ---
 app.get("/", (req, res) => {
   res.render("home.ejs");
 });
@@ -74,13 +70,13 @@ app.get("/sign-out", (req, res, next) => {
 app.get("/user-screen", async (req, res) => {
   if (req.isAuthenticated()) {
     try {
-      // get secret
+      // get secret data
       const result = await db.query(
         `SELECT secret FROM users WHERE email = $1`,
         [req.user.email]
       );
       const secret = result.rows[0]?.secret;
-      // get fulkl name
+      // get full name
       const result2 = await db.query(
         `SELECT first_name, last_name FROM users WHERE email = $1`,
         [req.user.email]
@@ -112,11 +108,9 @@ app.get("/reset-pswd", (req, res) => {
 });
 
 app.get("/reset-confirm", (req, res) => {
-  console.log("try get reset-confirm")
   res.render("reset-confirm.ejs");
 });
 
-// --- Reset password email flow ---
 app.post("/reset-pswd", async (req, res) => {
   const email = req.body.email;
 
@@ -143,7 +137,7 @@ app.post("/reset-pswd", async (req, res) => {
     });
 
     const mailOptions = {
-      from: `Comunication_LTD <${process.env.EMAIL_USER}>`,
+      from: `Comunication LTD <${process.env.EMAIL_USER}>`,
       to: email,
       subject: "🔐 Password Reset Request",
       text: `Hi!\n\nYour password reset code is:\n\n${token}\n\nConfirm yor reset: http://localhost:3000/reset-confirm \n\n Do not share the code with third persons!`,
@@ -159,7 +153,6 @@ app.post("/reset-pswd", async (req, res) => {
   }
 });
 
-// --- SUBMIT SIGN IN ---
 const loginAttempts = {};
 
 app.post("/sign-in", async (req, res, next) => {
@@ -440,7 +433,6 @@ app.post("/reset-confirm", async (req, res) => {
 });
 
 
-// --- Start ---
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });

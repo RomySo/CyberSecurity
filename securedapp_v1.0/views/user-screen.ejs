@@ -1,0 +1,82 @@
+<%- include('partials/header') %>
+
+<style>
+ 
+  .jumbotron { text-align: left !important; }
+
+  .jumbotron .container { margin-left: 32px; }
+
+ 
+  .hero-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+  .hero-row i { color: #1B5E20; }     
+  .hero-row .display-3 {
+    margin: 0;
+    font-size: 2.2rem;                 
+    line-height: 1.2;
+  }
+
+  .secret-text { text-align: left; }
+
+  
+  .btn-green {
+    background-color: #1B5E20 !important;
+    border-color: #1B5E20 !important;
+    color: #fff !important;
+  }
+  .btn-green:hover {
+    background-color: #154a19 !important;
+    border-color: #154a19 !important;
+    color: #fff !important;
+  }
+
+  
+  .btn-green-outline {
+    background: transparent !important;
+    border: 2px solid #1B5E20 !important;
+    color: #1B5E20 !important;
+  }
+  .btn-green-outline:hover {
+    background: #1B5E20 !important;
+    color: #fff !important;
+  }
+</style>
+
+ <h3 class="dispaly-3">Signed in as <%= currentUser %><h3>
+
+<div class="jumbotron">
+  <div class="container">
+    <div class="hero-row">
+      <i class="fas fa-globe fa-3x"></i>
+      <h2 class="display-3">Comunication LTD</h2>
+    </div>
+    <h2 class="display-3">Here is you secret data presented</h2>
+
+    <p class="secret-text">
+      <%= secret %>
+    </p>
+    <hr>
+
+      <a class="btn btn-green btn-lg" href="/sign-out" role="button">
+      <i class="fas fa-lock"></i> Sign Out
+      </a>
+
+      <a class="btn btn-green btn-lg" href="/change-pswd" role="button">
+      <i class="fas fa-plus"></i> Change Password
+      </a>
+
+      <a class="btn btn-green btn-lg" href="/data-update" role="button">
+      <i class="fas fa-plus"></i> Update secret data
+      </a>
+
+      <a class="btn btn-green btn-lg" href="/customers" role="button">
+      <i class="fas fa-search"></i> Customers List
+      </a>
+  </div>
+  </div>
+
+<%- include('partials/footer') %>
