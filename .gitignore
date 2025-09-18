@@ -59,7 +59,6 @@ dist/
 
 # Gatsby files
 .cache/
-public/
 
 # Vuepress
 .vuepress/dist
@@ -76,7 +75,6 @@ storybook-static/
 .vscode/
 
 # dotenv environment files
-.env
 .env.*.local
 
 # macOS / Linux system files
