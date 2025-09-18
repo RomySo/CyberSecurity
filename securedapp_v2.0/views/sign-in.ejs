@@ -1,29 +1,95 @@
 <%- include('partials/header') %>
 
-<div class="container mt-5">
-  <h1>Login</h1>
+<style>
+  /* דרמטי: שכבות גרדיאנט */
+  .login-bg{
+    min-height: 100vh;
+    /* שתי “כתמים” רדיאליים + גרדיאנט אלכסוני עיקרי */
+    background:
+      radial-gradient(900px 420px at 12% -10%, rgba(46,125,50,.35) 0%, transparent 60%),
+      radial-gradient(780px 360px at 112% 8%, rgba(27,94,32,.35) 0%, transparent 62%),
+      linear-gradient(135deg, #0F3B2C 0%, #0F5C3E 45%, #198D62 100%);
+    background-attachment: fixed;
+    padding-bottom: 60px;
+  }
 
-  <div class="row">
-    <div class="col-sm-8">
-      <div class="card">
-        <div class="card-body">
+  /* צבע טקסט ירוק כהה כפי שביקשת קודם */
+  .login-page,
+  .login-page h1,
+  .login-page label,
+  .login-page .card-body {
+    color: #1B5E20;
+  }
 
-          <!-- Makes POST request to /login route -->
-          <form action="/sign-in" method="POST">
-            <div class="form-group">
-              <label for="email">Email</label>
-              <input type="email" class="form-control" name="username" />
-            </div>
-            <div class="form-group">
-              <label for="password">Password</label>
-              <input type="password" class="form-control" name="password" />
-              <% if (typeof errorMessage !== 'undefined') { %>
-              <div class="alert alert-danger"><%= errorMessage %></div>
-              <% } %>
-            </div>
+  .login-hero {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 48px;
+    margin-bottom: .75rem;
+  }
+  .login-hero i {
+    color: #CDEFD7;         
+    font-size: 1.9rem;
+    line-height: 1;
+  }
+  .login-hero h1 {
+    margin: 0;
+    font-size: 2rem;
+    color: #EAFBF1;       
+  }
+
+  
+  .card{
+    background: rgba(255,255,255,0.88);
+    border: 1px solid rgba(27,94,32,0.25);
+    box-shadow: 0 16px 36px rgba(0,0,0,0.18);
+    border-radius: 12px;
+  }
+
+     html, body {
+    height: 100%;
+      margin: 0;             
+    }
+
+ 
+  .form-control{
+    border-radius: 10px;
+    border: 1px solid #A5D6A7;
+  }
+  .form-control:focus{
+    border-color: #1B5E20;
+    box-shadow: 0 0 0 0.2rem rgba(27,94,32,0.18);
+  }
+</style>
+
+<div class="login-bg">
+  <div class="container mt-5 login-page">
+    <div class="login-hero">
+      <i class="fas fa-globe"></i>
+      <h1>Sign-In</h1>
+    </div>
+    <div class="row">
+      <div class="col-sm-8">
+        <div class="card">
+          <div class="card-body">
+            <!-- Makes POST request to /login route -->
+            <form action="/sign-in" method="POST">
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" name="username" />
+              </div>
+              <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" name="password" />
+                <% if (typeof errorMessage !== 'undefined') { %>
+                <div class="alert alert-danger"><%= errorMessage %></div>
+                <% } %>
+              </div>
             <button type="submit" class="btn btn-dark">Sign-in</button>
           </form>
           <p class="mt-3"><a href="/reset-pswd">Forgot Password?</a></p>
+          </div>
         </div>
       </div>
     </div>
