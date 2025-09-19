@@ -1,30 +1,28 @@
 <%- include('partials/header') %>
 
 <style>
-  /* מיושר לשמאל */
+  
   .jumbotron.centered { text-align: left; }
 
-  /* אייקון + כותרת באותה שורה */
+ 
   .hero-row{
     display:flex;
     align-items:center;
-    gap:12px;            /* רווח בין האייקון לכותרת */
+    gap:12px;            
     margin-bottom:8px;
   }
-  .hero-row i{ color:#1B5E20; }   /* ירוק כהה לאייקון */
+  .hero-row i{ color:#1B5E20; }   
   .hero-row .display-3{ margin:0; line-height:1.2; }
 
-  /* שלא ירכז את הטקסט בשדה הקלט */
   .form-control.text-center { text-align:left; }
 
-  /* ריווח קטן לאייקונים בכפתורים */
   .btn i{ margin-right:8px; font-size:0.95em; vertical-align:-1px; }
 </style>
 
 <div class="container">
   <div class="jumbotron centered">
 
-    <!-- האייקון "בצד" יחד עם הכותרת -->
+    
     <div class="hero-row">
       <i class="fas fa-globe fa-3x"></i>
       <h1 class="display-3">Comunication LTD</h1>
@@ -37,7 +35,7 @@
         <input type="text" class="form-control text-center" name="secret" placeholder="What's your data?">
       </div>
 
-      <!-- כפתור עם אייקון פלוס -->
+      
       <button type="submit" class="btn btn-dark">
         <i class="fas fa-plus"></i> Submit
       </button>
