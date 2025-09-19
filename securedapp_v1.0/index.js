@@ -325,7 +325,7 @@ function ensureAuthenticated(req, res, next) {
 app.get("/customers", ensureAuthenticated, async (req, res) => {
   const search = req.query.search || "";
   try {
-    const dbquery = `SELECT * FROM customers WHERE LOWER(name) LIKE LOWER('${search}') ORDER BY id DESC`
+    const dbquery = `SELECT * FROM customers WHERE LOWER(name) LIKE LOWER('%${search}%') ORDER BY id DESC`
     console.log(dbquery)
 
     const result = await db.query(dbquery);
