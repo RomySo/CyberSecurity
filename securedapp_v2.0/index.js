@@ -421,20 +421,6 @@ app.post("/reset-confirm", async (req, res) => {
 
     // Hash the new password
     const hashedPassword = await bcrypt.hash(newPassword, saltRounds);
-    
-
-    // --->
-    const user = result.rows[0];
-    const password_history = user.password_history;
-    for (const prevHashedPassword of password_history) {
-      if (await bcrypt.compare(hashedPassword, prevHashedPassword)) {
-        return res.status(400).render("change-pswd.ejs", {
-          errorMessage:
-            "New password cannot be the same as one of your recent passwords.",
-        });
-      }
-    }
-    // <---- 
 
     // Update the password in the database
     await db.query("UPDATE users SET password = $1, reset_token = NULL WHERE email = $2", [hashedPassword, email]);
