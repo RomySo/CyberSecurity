@@ -161,7 +161,7 @@ app.post("/sign-in", async (req, res, next) => {
   // Check cooldown
   const { unlocked, waitTimeInMinutes } = checkLoginTimeout(username);
   if (unlocked) {
-    return res.status(429).render("login.ejs", {
+    return res.status(429).render("sign-in.ejs", {
       errorMessage: `Too many attempts. Try again in ${waitTimeInMinutes} minutes.`,
     });
   }
@@ -178,7 +178,7 @@ app.post("/sign-in", async (req, res, next) => {
       loginAttempts[username].lastAttempt = Date.now();
 
       if (loginAttempts[username].count >= tryCount) {
-        return res.status(429).render("login.ejs", {
+        return res.status(429).render("sign-in.ejs", {
           errorMessage: "Too many login attempts. Please try again later.",
         });
       }
